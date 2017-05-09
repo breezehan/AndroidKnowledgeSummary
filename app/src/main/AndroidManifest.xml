@@ -16,6 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SecondActivity">
+            <intent-filter>
+                <action android:name="com.breezehan.knowledge.second" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.breezehan.knowledge.mycategory" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
