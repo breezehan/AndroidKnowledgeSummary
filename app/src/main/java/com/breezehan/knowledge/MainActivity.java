@@ -1,6 +1,7 @@
 package com.breezehan.knowledge;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -22,8 +23,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setAction("com.breezehan.knowledge.second");
-                intent.addCategory("com.breezehan.knowledge.mycategory");
-                startActivity(intent);
+                intent.setDataAndType(Uri.parse("http://www.baidu.com"), "image/*");
+//                intent.setData(Uri.parse("http://www.baidu.com"));
+//                intent.setType("image/*");
+//                intent.addCategory("com.breezehan.knowledge.mycategory");
+//                intent.setAction(Intent.ACTION_SEND);
+//                intent.setType("text/plain");
+//                intent.setDataAndType(Uri.parse("http:"),"text/plain");
+//                intent.setDataAndType(Uri.parse("content:"),"text/plain");
+//                intent.setAction(intent.ACTION_SEND_MULTIPLE);
+//                intent.setType("image/*");
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         });
     }

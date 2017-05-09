@@ -21,6 +21,8 @@
                 <action android:name="com.breezehan.knowledge.second" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="com.breezehan.knowledge.mycategory" />
+
+                <data android:scheme="http" android:mimeType="image/*"/>
             </intent-filter>
         </activity>
     </application>
