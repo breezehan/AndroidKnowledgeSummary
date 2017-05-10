@@ -19,12 +19,16 @@
         <activity android:name=".SecondActivity">
             <intent-filter>
                 <action android:name="com.breezehan.knowledge.second" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="com.breezehan.knowledge.mycategory" />
 
-                <data android:scheme="http" android:mimeType="image/*"/>
+                <data
+                    android:mimeType="image/*"
+                    android:scheme="http" />
             </intent-filter>
         </activity>
+        <activity android:name=".DialogActivity" android:theme="@style/Theme.AppCompat.Dialog"></activity>
     </application>
 
 </manifest>
