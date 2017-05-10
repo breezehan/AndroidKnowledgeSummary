@@ -10,11 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".SecondActivity">
             <intent-filter>
@@ -28,7 +30,20 @@
                     android:scheme="http" />
             </intent-filter>
         </activity>
-        <activity android:name=".DialogActivity" android:theme="@style/Theme.AppCompat.Dialog"></activity>
+        <activity
+            android:name=".DialogActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
+        <activity android:name=".launchmode.FirstActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".launchmode.OtherActivity"
+            android:taskAffinity="com.breezehan.knowledge.other"
+            android:launchMode="singleTask"/>
     </application>
 
 </manifest>
