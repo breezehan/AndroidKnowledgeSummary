@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.breezehan.ipc">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <permission android:name="com.breezehan.ipc.permission.BookManagerService" />
+
+    <uses-permission android:name="com.breezehan.ipc.permission.BookManagerService" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SecondActivity" />
+        <activity android:name=".messenger.MessengerActivity" />
+
+        <service
+            android:name=".BookService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote" />
+        <service
+            android:name=".messenger.MessengerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":messenger" />
+        <service
+            android:name=".BookManagerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":bookManager" />
+
+        <activity android:name=".BookManagerActivity" />
+
+        <provider
+            android:name=".contentprovider.BookProvider"
+            android:authorities="com.breezehan.ipc.provider"
+            android:permission="com.breezehan.PROVIDER"
+            android:process=":provider" />
+
+        <activity android:name=".contentprovider.ProviderActivity" />
+        <service android:name=".binderpool.BinderPoolService"
+            android:process=":binderPool"/>
+        <activity android:name=".binderpool.BinderPoolActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

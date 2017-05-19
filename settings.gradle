@@ -1,1 +1,1 @@
-include ':app', ':taskaffinity'
+include ':app', ':taskaffinity', ':ipc'

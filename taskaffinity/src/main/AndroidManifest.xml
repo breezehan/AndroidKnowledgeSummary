@@ -16,13 +16,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ReparentActivity"
+        <activity
+            android:name=".ReparentActivity"
             android:allowTaskReparenting="true">
             <intent-filter>
                 <action android:name="com.breezehan.taskaffinity.reparent" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+<!--        <service
+            android:name=".MessengerService"
+            android:process=":remote" />
+
+        <activity android:name=".MessengerActivity" />-->
+
     </application>
 
 </manifest>

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Android Knowledge Summary</string>
+    <string name="main_to_dialog">ToDialog</string>
 </resources>
