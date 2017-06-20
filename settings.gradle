@@ -1,1 +1,1 @@
-include ':app', ':taskaffinity', ':ipc'
+include ':app', ':taskaffinity', ':ipc', ':webview', ':drag', ':pm', ':process'

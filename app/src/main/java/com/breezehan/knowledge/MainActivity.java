@@ -1,7 +1,10 @@
 package com.breezehan.knowledge;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,7 +49,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.button2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,SecondActivity.class));
+                Intent intent = new Intent();
+                intent.setComponent(new ComponentName(getPackageName(), SecondActivity.class.getName()));
+                startActivity(intent);
             }
         });
     }
@@ -104,4 +109,5 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         Log.i(TAG, "onRestoreInstanceState: ");
     }
+
 }
