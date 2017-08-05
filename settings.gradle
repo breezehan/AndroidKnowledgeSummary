@@ -1,1 +1,1 @@
-include ':app', ':taskaffinity', ':ipc', ':webview', ':drag', ':pm', ':process'
+include ':app', ':taskaffinity', ':ipc', ':webview', ':drag', ':process', ':behavior', ':view', ':rxjava'
