@@ -65,10 +65,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public void toSecond(View view) {
-        Intent intent = new Intent(this, SecondActivity.class);
-//        intent.putExtra("user", new User(18, "lily"));
-        startActivity(intent);
-    }
 
 }
