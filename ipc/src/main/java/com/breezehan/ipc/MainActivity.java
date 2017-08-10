@@ -17,11 +17,23 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private IBookManager iBookManager;
+    private IBinder.DeathRecipient deathRecipient = new IBinder.DeathRecipient() {
+        @Override
+        public void binderDied() {
+            if (iBookManager != null) {
+                iBookManager.asBinder().unlinkToDeath(deathRecipient, 0);
+                iBookManager = null;
+                //重新连接或者其他操作
+            }
+        }
+    };
     private ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            IBookManager iBookManager = IBookManager.Stub.asInterface(service);
+            iBookManager = IBookManager.Stub.asInterface(service);
             try {
+                service.linkToDeath(deathRecipient, 0);
                 iBookManager.addBook(new Book(1, "Java编程思想"));
                 iBookManager.addBook(new Book(2, "Android开发艺术探索"));
                 List<Book> bookList = iBookManager.getBookList();
@@ -37,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private  ServiceConnection selfServiceConnection = new ServiceConnection() {
+    private ServiceConnection selfServiceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
             IUserManager iUserManager = UserManagerImpl.asInterface(service);
             try {
-                iUserManager.addUser(new User(18,"徐医生"));
-                iUserManager.addUser(new User(22,"任玉刚"));
+                iUserManager.addUser(new User(18, "徐医生"));
+                iUserManager.addUser(new User(22, "任玉刚"));
                 List<User> userList = iUserManager.getUserList();
                 Log.d(TAG, "onServiceConnected self:" + userList.toString());
             } catch (RemoteException e) {
