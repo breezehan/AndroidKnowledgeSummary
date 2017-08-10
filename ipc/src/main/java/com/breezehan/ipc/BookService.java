@@ -31,7 +31,7 @@ public class BookService extends Service{
             mBookList.add(book);
         }
     };
-    private IBinder selfBinder = new UserManagerImpl();
+    private IBinder selfBinder = new UserManagerImpl();//手动实现的binder
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
