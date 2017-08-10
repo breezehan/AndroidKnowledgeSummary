@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.breezehan.ipc.bundle.SecondActivity;
+
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -73,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        button = (Button) findViewById(R.id.button);
         bindService(new Intent(this, BookService.class), selfServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
@@ -85,5 +86,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    public void bundle(View view) {
+        Intent intent = new Intent(this, SecondActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("user", "lily");
+        intent.putExtras(bundle);
+        intent.putExtra("info", "secret");
+        startActivity(intent);
     }
 }
