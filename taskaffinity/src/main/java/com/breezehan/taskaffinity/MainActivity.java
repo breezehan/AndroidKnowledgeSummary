@@ -16,6 +16,9 @@ import android.view.View;
 
 import java.util.List;
 
+/**
+ * 对应博客http://blog.csdn.net/hds2011/article/details/71215298
+ */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
 

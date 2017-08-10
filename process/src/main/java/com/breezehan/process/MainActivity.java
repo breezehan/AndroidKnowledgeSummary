@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+/**
+ * 对应博客http://blog.csdn.net/hds2011/article/details/72663321
+ */
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";

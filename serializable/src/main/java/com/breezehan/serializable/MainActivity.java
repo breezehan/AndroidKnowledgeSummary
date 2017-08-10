@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * 对应博客http://blog.csdn.net/hds2011/article/details/71713371
+ */
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private TextView textView;

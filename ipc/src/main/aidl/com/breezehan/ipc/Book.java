@@ -3,13 +3,6 @@ package com.breezehan.ipc;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Description
- * Author  breezehan
- * Date    2017/5/17 9:56
- * Version
- */
-
 public class Book implements Parcelable {
     private int bookId;
     private String bookName;
@@ -45,13 +38,5 @@ public class Book implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(bookId);
         dest.writeString(bookName);
-    }
-
-    @Override
-    public String toString() {
-        return "Book{" +
-                "bookId=" + bookId +
-                ", bookName='" + bookName + '\'' +
-                '}';
     }
 }
