@@ -31,11 +31,11 @@ public class BookService extends Service{
             mBookList.add(book);
         }
     };
-
+    private IBinder selfBinder = new UserManagerImpl();
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return binder;
+        return selfBinder;
     }
 
 }

@@ -37,12 +37,32 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private  ServiceConnection selfServiceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            IUserManager iUserManager = UserManagerImpl.asInterface(service);
+            try {
+                iUserManager.addUser(new User(18,"徐医生"));
+                iUserManager.addUser(new User(22,"任玉刚"));
+                List<User> userList = iUserManager.getUserList();
+                Log.d(TAG, "onServiceConnected self:" + userList.toString());
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 //        button = (Button) findViewById(R.id.button);
-        bindService(new Intent(this, BookService.class), mServiceConnection, Context.BIND_AUTO_CREATE);
+        bindService(new Intent(this, BookService.class), selfServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
