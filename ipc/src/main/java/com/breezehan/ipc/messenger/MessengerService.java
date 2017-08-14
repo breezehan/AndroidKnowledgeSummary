@@ -22,7 +22,6 @@ import com.breezehan.ipc.MyConstants;
 
 public class MessengerService extends Service {
     private final static String TAG = "MessengerService";
-    private Messenger replyToMessenger;
     private Handler serverHanlder = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -30,13 +29,13 @@ public class MessengerService extends Service {
             switch (msg.what) {
                 case MyConstants.MSG_FROM_CLIENT:
                     Log.d(TAG, "handleMessage: receive msg  "+msg.getData().getString("msg"));
-                    replyToMessenger = msg.replyTo;
+                    Messenger clientMessenger = msg.replyTo;
                     Message obtain = Message.obtain(null, MyConstants.MSG_FROM_SERVER);
                     Bundle bundle = new Bundle();
                     bundle.putString("msg","Hi,This is from server.");
                     obtain.setData(bundle);
                     try {
-                        replyToMessenger.send(obtain);
+                        clientMessenger.send(obtain);
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }

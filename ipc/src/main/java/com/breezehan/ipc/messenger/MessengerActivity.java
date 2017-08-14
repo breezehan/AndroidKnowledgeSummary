@@ -31,11 +31,10 @@ public class MessengerActivity extends AppCompatActivity {
     };
     private Messenger clientMessenger = new Messenger(clientHandler);
 
-    private Messenger serviceMessenger;
     private ServiceConnection mServiceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            serviceMessenger = new Messenger(service);
+            Messenger serviceMessenger = new Messenger(service);
             Message message = Message.obtain(null, MyConstants.MSG_FROM_CLIENT);
             Bundle bundle = new Bundle();
             bundle.putString("msg", "Hello,This is client.");
@@ -59,5 +58,11 @@ public class MessengerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messenger);
         bindService(new Intent(this, MessengerService.class), mServiceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    protected void onDestroy() {
+        unbindService(mServiceConnection);
+        super.onDestroy();
     }
 }
