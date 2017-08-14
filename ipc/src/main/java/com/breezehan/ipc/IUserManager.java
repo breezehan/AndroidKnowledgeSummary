@@ -22,4 +22,5 @@ public interface IUserManager extends IInterface {
     public List<User> getUserList() throws RemoteException;
 
     public void addUser(User user) throws RemoteException;
+
 }
