@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 service.linkToDeath(deathRecipient, 0);
 //                iBookManager.addBook(new Book(1, "Java编程思想"));
 //                iBookManager.addBook(new Book(2, "Android开发艺术探索"));
-                List<Book> bookList = iBookManager.getBookList();//会被挂起，一直等到服务端返回数据，耗时时放在非UI线程
+                List<Book> bookList = iBookManager.getBookList();//会在Binder线程池中被挂起，一直等到服务端返回数据，耗时时放在非UI线程
                 Log.d(TAG, "onServiceConnected: query book list,list type:"+bookList.getClass().getCanonicalName());
                 Log.d(TAG, "onServiceConnected: query book list " + bookList.toString());
                 Book book = new Book(3, "Android进阶");
