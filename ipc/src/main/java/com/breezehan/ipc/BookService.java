@@ -118,7 +118,7 @@ public class BookService extends Service {
         for(int i=0;i<N;i++) {
             IOnNewBookArrivedListener broadcastItem = mArrivedListeners.getBroadcastItem(i);
             if (broadcastItem != null) {
-                broadcastItem.onNewBookArrived(newBook);
+                broadcastItem.onNewBookArrived(newBook);//耗时时非UI线程
             }
         }
         mArrivedListeners.finishBroadcast();
