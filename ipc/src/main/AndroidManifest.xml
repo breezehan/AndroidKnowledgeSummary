@@ -16,9 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity" />
 
         <service
             android:name=".BookService"
@@ -27,7 +25,7 @@
         <activity
             android:name=".bundle.SecondActivity"
             android:process="com.breezehan.ipc.remote" />
-        <activity android:name=".messenger.MessengerActivity"></activity>
+        <activity android:name=".messenger.MessengerActivity" />
 
         <service
             android:name=".messenger.MessengerService"
@@ -40,6 +38,12 @@
             android:process=":provider" />
 
         <activity android:name=".provider.ProviderActivity">
+
+        </activity>
+
+        <service android:name=".binderpool.BinderPoolService" />
+
+        <activity android:name=".binderpool.BinderPoolActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
