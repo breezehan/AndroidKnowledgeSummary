@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 iBookManager.asBinder().unlinkToDeath(deathRecipient, 0);
                 iBookManager = null;
                 //重新连接或者其他操作
+                Log.e(TAG, "binderDied: ");
             }
         }
     };
@@ -36,10 +37,11 @@ public class MainActivity extends AppCompatActivity {
             iBookManager = IBookManager.Stub.asInterface(service);
             try {
                 service.linkToDeath(deathRecipient, 0);
-                iBookManager.addBook(new Book(1, "Java编程思想"));
-                iBookManager.addBook(new Book(2, "Android开发艺术探索"));
+//                iBookManager.addBook(new Book(1, "Java编程思想"));
+//                iBookManager.addBook(new Book(2, "Android开发艺术探索"));
                 List<Book> bookList = iBookManager.getBookList();
-                Log.d(TAG, "onServiceConnected:" + bookList.toString());
+                Log.d(TAG, "onServiceConnected: query book list,list type:"+bookList.getClass().getCanonicalName());
+                Log.d(TAG, "onServiceConnected: query book list " + bookList.toString());
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        bindService(new Intent(this, BookService.class), selfServiceConnection, Context.BIND_AUTO_CREATE);
+        bindService(new Intent(this, BookService.class), mServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override

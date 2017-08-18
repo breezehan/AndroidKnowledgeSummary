@@ -19,7 +19,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 
 public class BookService extends Service{
-    private List<Book> mBookList = new ArrayList<>();
+    //    private List<Book> mBookList = new ArrayList<>();
+    CopyOnWriteArrayList<Book> mBookList = new CopyOnWriteArrayList<>();
     private IBinder binder = new IBookManager.Stub() {
         @Override
         public List<Book> getBookList() throws RemoteException {
@@ -32,10 +33,18 @@ public class BookService extends Service{
         }
     };
     private IBinder selfBinder = new UserManagerImpl();//手动实现的binder
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        mBookList.add(new Book(1, "三体"));
+        mBookList.add(new Book(2, "Android"));
+    }
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return selfBinder;
+        return binder;
     }
 
 }
