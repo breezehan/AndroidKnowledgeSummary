@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.icu.text.LocaleDisplayNames;
 import android.os.Binder;
 import android.os.IBinder;
+import android.os.RemoteCallbackList;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -27,7 +28,7 @@ public class BookService extends Service {
     //    private List<Book> mBookList = new ArrayList<>();
     private AtomicBoolean mIsServiceDestroyed = new AtomicBoolean(false);
     private CopyOnWriteArrayList<Book> mBookList = new CopyOnWriteArrayList<>();
-    private CopyOnWriteArrayList<IOnNewBookArrivedListener> mArrivedListeners = new CopyOnWriteArrayList<>();
+    private RemoteCallbackList<IOnNewBookArrivedListener> mArrivedListeners = new RemoteCallbackList<>();
     private IBinder binder = new IBookManager.Stub() {
         @Override
         public List<Book> getBookList() throws RemoteException {
@@ -41,23 +42,25 @@ public class BookService extends Service {
 
         @Override
         public void registerListener(IOnNewBookArrivedListener listener) throws RemoteException {
-            if (!mArrivedListeners.contains(listener)) {
-                mArrivedListeners.add(listener);
-            } else {
-                Log.d(TAG, "already exists.");
-            }
-            Log.d(TAG, "registerListener,size: " + mArrivedListeners.size());
+//            if (!mArrivedListeners.contains(listener)) {
+//                mArrivedListeners.add(listener);
+//            } else {
+//                Log.d(TAG, "already exists.");
+//            }
+            mArrivedListeners.register(listener);
+//            Log.d(TAG, "registerListener,size: " + mArrivedListeners.size());
         }
 
         @Override
         public void unRegisterListener(IOnNewBookArrivedListener listener) throws RemoteException {
-            if (mArrivedListeners.contains(listener)) {
-                mArrivedListeners.remove(listener);
-                Log.d(TAG, "unRegisterListener succeed. ");
-            } else {
-                Log.d(TAG, "not found,can not unregister.");
-            }
-            Log.d(TAG, "unRegisterListener,current size:"+mArrivedListeners.size());
+//            if (mArrivedListeners.contains(listener)) {
+//                mArrivedListeners.remove(listener);
+//                Log.d(TAG, "unRegisterListener succeed. ");
+//            } else {
+//                Log.d(TAG, "not found,can not unregister.");
+//            }
+//            Log.d(TAG, "unRegisterListener,current size:"+mArrivedListeners.size());
+            mArrivedListeners.unregister(listener);
         }
     };
     private IBinder selfBinder = new UserManagerImpl();//手动实现的binder
@@ -105,11 +108,19 @@ public class BookService extends Service {
 
     private void onNewBookArrived(Book newBook) throws RemoteException {
         mBookList.add(newBook);
-        Log.d(TAG, "onNewBookArrived，notify listeners:"+mArrivedListeners.size());
-        for (int i=0;i<mArrivedListeners.size();i++) {
-            IOnNewBookArrivedListener listener = mArrivedListeners.get(i);
-            Log.d(TAG, "onNewBookArrived,notify listener:"+listener);
-            listener.onNewBookArrived(newBook);
+//        Log.d(TAG, "onNewBookArrived，notify listeners:"+mArrivedListeners.size());
+//        for (int i=0;i<mArrivedListeners.size();i++) {
+//            IOnNewBookArrivedListener listener = mArrivedListeners.get(i);
+//            Log.d(TAG, "onNewBookArrived,notify listener:"+listener);
+//            listener.onNewBookArrived(newBook);
+//        }
+        int N = mArrivedListeners.beginBroadcast();
+        for(int i=0;i<N;i++) {
+            IOnNewBookArrivedListener broadcastItem = mArrivedListeners.getBroadcastItem(i);
+            if (broadcastItem != null) {
+                broadcastItem.onNewBookArrived(newBook);
+            }
         }
+        mArrivedListeners.finishBroadcast();
     }
 }
