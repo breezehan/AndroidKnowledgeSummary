@@ -17,11 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service
@@ -31,13 +27,25 @@
         <activity
             android:name=".bundle.SecondActivity"
             android:process="com.breezehan.ipc.remote" />
-        <activity android:name=".messenger.MessengerActivity">
-
-        </activity>
+        <activity android:name=".messenger.MessengerActivity"></activity>
 
         <service
             android:name=".messenger.MessengerService"
             android:process="com.breezehan.ipc.messenger" />
+
+        <provider
+            android:name=".provider.BookProvider"
+            android:authorities="com.breezehan.ipc.book.provider"
+            android:permission="com.breezehan.PROVIDER"
+            android:process=":provider" />
+
+        <activity android:name=".provider.ProviderActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
