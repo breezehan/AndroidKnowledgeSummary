@@ -7,7 +7,12 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.breezehan.ipc.R;
-
+/**
+ * Author  hands
+ * Description  没有实际应用，只是理解和练习，水文一个
+ * Date    2017/8/20 15:18
+ * Version
+ */
 public class BinderPoolActivity extends AppCompatActivity {
 
     private static final String TAG = "BinderPoolActivity";

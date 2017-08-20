@@ -22,9 +22,10 @@ public class BinderPool {
     public static final int BINDER_NONE = -1;
     public static final int BINDER_COMPUTE = 0;
     public static final int BINDER_SECURITY_CENTER = 1;
-    private static volatile BinderPool sInstance;
-    private CountDownLatch mConnectBinderPoolCountDownLatch;
+    private static volatile BinderPool sInstance;//确保并发取值正确性
     private final Context mContext;
+    //控制多个线程时，某一线程中代码执行顺序；是一个同步工具类，它允许一个或多个线程一直等待，直到其他线程的操作执行完后再执行
+    private CountDownLatch mConnectBinderPoolCountDownLatch;
     private IBinderPool mBinderPool;
 
     public BinderPool(Context context) {
