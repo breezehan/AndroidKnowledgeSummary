@@ -8,7 +8,9 @@ import android.util.Log;
 public class BinderPoolService extends Service {
     private static final String TAG = "BinderPoolService";
     private IBinder binderPool = new BinderPool.BinderPoolImpl();
+
     public BinderPoolService() {
+
     }
 
     @Override
