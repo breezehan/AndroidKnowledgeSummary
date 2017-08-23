@@ -45,6 +45,7 @@
 
         <activity android:name=".binderpool.BinderPoolActivity">
             <intent-filter>
+                <!--注意使用不同Activity时-->
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
