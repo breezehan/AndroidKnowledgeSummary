@@ -6,7 +6,3 @@
 4. ipc涉及[Android binder](http://blog.csdn.net/hds2011/article/details/75255075)
 5. ipc的package中也有[IPC方式](http://blog.csdn.net/hds2011/article/details/77072820)
 6. ipc的binderpool中时线程池有关内容
-7. 测试git pull
-8. merge
-9. merge1
-10. test
