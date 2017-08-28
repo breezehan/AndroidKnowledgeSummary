@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:onClick="showWindow"
         android:text="Button"
+        android:background="@drawable/ripple_test"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
