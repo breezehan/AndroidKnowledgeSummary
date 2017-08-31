@@ -1,1 +1,1 @@
-include ':app', ':taskaffinity', ':ipc', ':process', ':serializable', ':remoteviews', ':animator', ':window'
+include ':app', ':taskaffinity', ':ipc', ':process', ':serializable', ':remoteviews', ':animator',':window'
